@@ -6,7 +6,7 @@ export function meta() {
     [
     {    
     title:'GuitraLA - Nosotros',
-    description:'Venta de guitarras'
+    description:'Informacion de guitarras'
     }]
   )
 }
