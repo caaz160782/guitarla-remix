@@ -2,7 +2,10 @@ import {Meta,
         Links,
         Outlet,
         Scripts,
-        LiveReload
+        LiveReload,
+        useRouteError,
+        isRouteErrorResponse,
+        
        } from '@remix-run/react'
 import styles from '~/styles/index.css'
 import Header from '~/components/header';
@@ -67,3 +70,40 @@ const Document =({children})=>{
         </html>
     )
 }
+/**manejo d eerrores */
+export function ErrorBoundary() {
+    const error = useRouteError();
+    // when true, this is what used to go to `CatchBoundary`
+    if (isRouteErrorResponse(error)) {
+    //   return (
+    //     <div>
+    //       <h1>Oops</h1>
+    //       <p>Status: {error.status}</p>
+    //       <p>{error.statusText}</p>
+    //     </div>
+    //   );
+    return (
+        <Document>
+            {/* de esta manera imprimimos los errores */}
+            <p className="error">{error.status} {error.statusText} </p>         
+        </Document>
+        )
+    }
+  
+    // Don't forget to typecheck with your own logic.
+    // Any value can be thrown, not just errors!
+    let errorMessage = "Unknown error";
+    
+  
+    return (
+    //   <div>
+    //     <h1>Uh oh ...</h1>
+    //     <p>Something went wrong.</p>
+    //     <pre>{errorMessage}</pre>
+    //   </div>
+    <Document>
+            {/* de esta manera imprimimos los errores */}
+            <p className="error">{errorMessage} </p>         
+        </Document>
+    );
+  }
