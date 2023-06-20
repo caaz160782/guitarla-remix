@@ -112,4 +112,21 @@
   text-align: center;
 }
 
+.enlace{
+  margin-top: 2rem; 
+  display: block;
+  background-color: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  padding: .5rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 900;
+  transition-property: background-color;
+  transition-duration: 300ms;
+}
 
+.enlace:hover {
+   background-color: var(--primary);
+}
