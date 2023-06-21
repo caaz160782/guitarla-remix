@@ -12,8 +12,8 @@ const Navegacion = () => {
             <Link to="/nosotros"
                 className={location.pathname === '/nosotros' ? 'active' :''}
             > Nosotros </Link>
-            <Link to="/tienda"
-                className={location.pathname === '/tienda' ? 'active' :''}
+            <Link to="/guitarras"
+                className={location.pathname === '/guitarras' ? 'active' :''}
             > Tienda </Link>
             <Link to="/blog"
                 className={location.pathname === '/blog' ? 'active' :''} 
