@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "@remix-run/react";
 import { getGuitarra } from "~/models/guitarras.server";
 import guitarrasStyles from '~/styles/guitarras.css'
+import { useOutletContext } from '@remix-run/react';
 
 export async function loader({params}){
   const  {guitarraUrl}= params;
@@ -52,6 +53,9 @@ const Guitarra = () => {
   const {descripcion,imagen,nombre,precio}=guitarra[0]?.attributes;
   const [cantidad, setCantidad]=useState(0)
 
+  const cat=useOutletContext();
+console.log(cat)
+
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(cantidad <1){
@@ -66,7 +70,7 @@ const Guitarra = () => {
       cantidad
     }
 
-    console.log(guitarraSeleccionada)
+    
   }
  
   return (
