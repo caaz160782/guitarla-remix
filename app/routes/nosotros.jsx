@@ -27,8 +27,7 @@ export function links() {
 }    
 
 const Nosotros = () => {
-const cat=useOutletContext();
-//console.log(cat)
+
 
   return (
     <main className="contenedor nosotros">

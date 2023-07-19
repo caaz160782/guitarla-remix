@@ -49,12 +49,12 @@ export function links() {
 }    
 
 const Guitarra = () => {
+  const {agregarCarrito} =useOutletContext();
   const guitarra =useLoaderData();
   const {descripcion,imagen,nombre,precio}=guitarra[0]?.attributes;
   const [cantidad, setCantidad]=useState(0)
 
-  const cat=useOutletContext();
-console.log(cat)
+
 
   const handleSubmit=(e)=>{
     e.preventDefault();
@@ -69,7 +69,7 @@ console.log(cat)
       precio,
       cantidad
     }
-
+    agregarCarrito(guitarraSeleccionada)
     
   }
  
