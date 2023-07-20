@@ -39,9 +39,20 @@ const Carrito = () => {
                         </div>
                         <div>
                           <p className='nombre'>{producto.nombre} </p>
+                          <p>Cantidad:  </p>
+                          <select 
+                            className='select'
+                            value={producto.cantidad}
 
+                          >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
                           <p className='precio'>$<span> {producto.precio}</span> </p>
-                          <p className='subTotal'>Subtotal <span> {producto.cantidad * producto.precio}</span> </p>
+                          <p className='subTotal'>Subtotal <span>$ {producto.cantidad * producto.precio}</span> </p>
                         </div>
                     </div>
                   ))
