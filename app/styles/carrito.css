@@ -16,12 +16,12 @@
 
 .producto{
     display: grid;
-    grid-template-columns: 1fr 3fr;
-   
+    grid-template-columns: 1fr 3fr;   
     gap: 4rem;
     align-items: center;
     padding: 3rem 0;
     border-bottom: 1px solid #cfcfcf;
+    position: relative;
 }
 
 .producto:last-of-type{
@@ -51,7 +51,8 @@
     font-size: 4.2rem;
 }
 
-.precio{
+.producto .precio{
+    margin-top: 2rem;
     font-weight: 700;
     color:var(--primary);
 }
@@ -68,4 +69,15 @@
     border-radius: 1rem;
     position: sticky;
     top:3rem;
+}
+
+.btnEliminar{
+ all:unset;
+ position: absolute;
+ top:3rem;
+ right: 1rem;
+}
+
+.btnEliminar:hover{
+    cursor: pointer;
 }

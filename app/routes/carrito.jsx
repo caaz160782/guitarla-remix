@@ -1,5 +1,8 @@
+import { useEffect,useState } from 'react';
 import carritoStyles from '../styles/carrito.css'
 import { useOutletContext } from '@remix-run/react';
+import { ClientOnly } from 'remix-utils';
+
 export function meta() {
     return(
       [
@@ -22,17 +25,26 @@ export function links() {
   
 
 const Carrito = () => {
-  const {carrito} =useOutletContext();
+  const [total,setTotal]=useState(0)
+  const {carrito,actualizarCantidad,eliminarGuitarra} =useOutletContext();
+
+  useEffect(()=>{
+  const calculoTotal=carrito.reduce((total,producto)=>total + (producto.cantidad * producto.precio),0)
+  setTotal(calculoTotal)
+  },[carrito])
 
     return (
-    <main className='contenedor'>
+      <ClientOnly fallback={'cargando ....'}>
+        { () => (
+         
+        <main className='contenedor'>          
         <h1 className='heading'> Carrito de Compras</h1>
         <div className='contenido'>
             <div className='carrito'>
                 <h2>Articulos</h2>
 
-                {carrito.length === 0 ? 'Carrito vacio':(
-                  carrito.map(producto =>(
+                {carrito?.length === 0 ? 'Carrito vacio':(
+                  carrito?.map(producto =>(
                     <div key={producto.id} className='producto'>
                         <div>
                           <img src={producto.imagen} alt={producto.nombre} />
@@ -43,7 +55,11 @@ const Carrito = () => {
                           <select 
                             className='select'
                             value={producto.cantidad}
-
+                            onChange={e=>actualizarCantidad({
+                              cantidad:+e.target.value,
+                              id:producto.id
+                            })}
+                            
                           >
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -54,19 +70,25 @@ const Carrito = () => {
                           <p className='precio'>$<span> {producto.precio}</span> </p>
                           <p className='subTotal'>Subtotal <span>$ {producto.cantidad * producto.precio}</span> </p>
                         </div>
+                        <button
+                          type='button'
+                          className='btnEliminar'
+                          onClick={()=>eliminarGuitarra(producto.id)}
+                        >X</button>
                     </div>
                   ))
                 )}
             </div>
             <aside className='resumen'>
                 <h3> Resumen del Pedido</h3>
-                <p>Total a pagar: $ </p>
-                
+                <p>Total a pagar: ${total} </p>                
             </aside>
-        </div>
-       
-    </main>
+        </div>       
+     </main>   
+    )}
+    </ClientOnly>
   )
+  
 }
 
 export default Carrito
